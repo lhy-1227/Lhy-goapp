@@ -1,7 +1,7 @@
 <template>
   <div>
-    <home-header ></home-header>
-    <home-swiper :list="swiperList"></home-swiper>
+    <home-header :city="city"></home-header>
+    <home-swiper :swiperList="swiperList"></home-swiper>
     <home-icons></home-icons>
     <home-recommend></home-recommend>
     <home-weekend></home-weekend>
@@ -33,21 +33,21 @@ export default {
     }
   },
   methods: {
-    getHomeInfo () {
-      axios.get('/data/index.json')
-        .then(this.getHomeInfoSucc)
+      getCityInfo () {
+          axios.get('/data/index.json')
+              .then(this.handleGetCityInfoSucc)
+      },
+      handleGetCityInfoSucc (res) {
+          res = res.data
+          if (res.ret && res.data) {
+              const data = res.data
+              this.city = data.city
+              this.swiperList = data.swiperList
+          }
+        }
     },
-    getHomeInfoSucc(res) {
-      res = res.data
-      if (res.ret && res.data) {
-        const data = res.data
-        this.swiperList = data.swiperList
-        console.log(this.swiperList)
-      }
+    mounted () {
+      this.getCityInfo()
     }
-  },
-  mounted () {
-    this.getHomeInfo()
-  }
 }
 </script>

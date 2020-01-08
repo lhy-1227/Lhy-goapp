@@ -1,5 +1,10 @@
 <template>
-    <div class="header">城市选择</div>
+    <div class="header">
+        城市选择
+        <router-link to="/">
+            <div class="iconfont header-back">&#xe624;</div>
+        </router-link>
+    </div>
 </template>
 
 <script>
