@@ -2,14 +2,20 @@
     <div>
         <div class="title">热销推荐</div>
         <ul>
-            <li class="item border-bottom" v-for="item of recommendList" :key="item.id"> 
-                <img class="item-img" :src="item.imgurl" />
+            <router-link 
+                tag="li"
+                 class="item border-bottom" 
+                 v-for="item of recommendList"
+                 :key="item.id"
+                 :to="'/detail/' + item.id"
+            > 
+                <img class="item-img" :src="item.imgUrl" />
                 <div class="item-info">
                     <p class="item-title">{{item.title}}</p>
                     <p class="item-desc">{{item.desc}}</p>
                     <button class="item-button">查看详情</button>
                 </div>
-            </li>
+            </router-link>
         </ul>
     </div>
 </template>
@@ -17,27 +23,8 @@
 <script>
 export default {
     name: 'HomeRecommend',
-    data () {
-        return {
-            recommendList: [{
-            id: '001',
-            imgurl: 'http://img1.qunarzz.com/sight/p0/1409/19/adca619faaab0898245dc4ec482b5722.jpg_200x200_1bc99086.jpg',
-            title: '故宫',
-            desc: '576349条评论'
-        },
-        {
-            id: '002',
-            imgurl: 'https://imgs.qunarzz.com/sight/p0/1708/2b/2b3b94de99c0a425a3.img.jpg_200x200_2458ffb2.jpg',
-            title: '八达岭长城',
-            desc: '99942条评论'
-        },
-        {
-            id: '003',
-            imgurl: 'https://imgs.qunarzz.com/sight/p0/1911/29/29d9b9078000774fa3.img.jpg_200x200_3621a35a.jpg',
-            title: '北京欢乐谷',
-            desc: '84894条评论'
-        }]
-        }
+    props: {
+        recommendList: Array
     }
 }
 </script>
